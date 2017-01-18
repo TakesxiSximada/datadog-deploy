@@ -8,8 +8,6 @@ dependencies:
       if [[ ! -f ~/bin/terraform ]]; then
         mkdir -p tmp
         cd tmp
-        mkdir -p ~/.local/bin
-        cd ~/.local/bin
         curl -L "https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip" -o terraform.zip
         unzip *.zip
         mv terraform ~/bin/
