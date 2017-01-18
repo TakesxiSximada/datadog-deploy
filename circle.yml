@@ -5,22 +5,24 @@ machine:
 dependencies:
   override:
     - |
-      if [[ ! -f ~/.local/bin/terraform ]]; then
+      if [[ ! -f ~/bin/terraform ]]; then
+        mkdir -p tmp
+        cd tmp
         mkdir -p ~/.local/bin
         cd ~/.local/bin
-        wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip"
+        curl -L "https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip" -o terraform.zip
         unzip *.zip
-        rm *.zip
+        mv terraform ~/bin/
       fi
   cache_directories:
-    - ~/.local/bin
+    - ~/bin
 
 test:
   override:
-    - ~/.local/terraform plan
+    - terraform plan
 
 deployment:
   production:
     branch: master
     commands:
-      - ~/.local/terraform apply
+      - terraform apply
