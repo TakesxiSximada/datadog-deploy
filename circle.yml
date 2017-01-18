@@ -17,10 +17,10 @@ dependencies:
 
 test:
   override:
-    - terraform plan
+    - ~/.local/terraform plan
 
 deployment:
   production:
     branch: master
     commands:
-      - terraform apply
+      - ~/.local/terraform apply
